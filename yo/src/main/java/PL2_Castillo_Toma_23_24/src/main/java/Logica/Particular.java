@@ -9,21 +9,37 @@ package Logica;
  * @author alber
  */
 public class Particular extends Cliente {
-    
+
     //Atributos
     private Tarjeta tarjetaCredito;
     private boolean vip;
-    
-    //Constructor
 
+    //Constructor
     public Particular(Tarjeta tarjetaCredito, boolean vip, String dni, String nombre, String correo, String clave, String telefono) {
         super(dni, nombre, correo, clave, telefono);
         this.tarjetaCredito = tarjetaCredito;
         this.vip = vip;
     }
-    
-    
+
     //G&S
+    public double disminuirSaldo(double cantidad) {
+        Double saldo = tarjetaCredito.getSaldo();
+        return saldo -= cantidad;
+    }
+
+    public double aumentarSaldo(double cantidad) {
+        Double saldo = tarjetaCredito.getSaldo();
+        return saldo += cantidad;
+    }
+
+    public double getSaldo() {
+        return tarjetaCredito.getSaldo();
+    }
+
+    public void setSaldo(double saldo) {
+        tarjetaCredito.setSaldo(saldo);
+    }
+
     /**
      * Get the value of vip
      *
@@ -41,7 +57,6 @@ public class Particular extends Cliente {
     public void setVip(boolean vip) {
         this.vip = vip;
     }
-
 
     /**
      * Get the value of tarjetaCredito

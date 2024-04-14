@@ -16,15 +16,35 @@ public class Tarjeta {
     private String titular;
     private String numeroTarjeta;
     private LocalDateTime fechaCaducidad;
+    private double saldo;
 
     //Constructor
-    public Tarjeta(String titular, String numeroTarjeta, LocalDateTime fechaCaducidad) {
+    public Tarjeta(String titular, String numeroTarjeta, LocalDateTime fechaCaducidad, double Saldo) {
         this.titular = titular;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaCaducidad = fechaCaducidad;
+        this.saldo = saldo;
     }
     
     //Getters & Setters
+    public double disminuirSaldo(double cantidad){
+        return this.saldo -= cantidad;
+    }
+    
+    public double aumentarSaldo(double cantidad){
+        return this.saldo += cantidad;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+    
+    
+    
     /**
      * Get the value of fechaCaducidad
      *

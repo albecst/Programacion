@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class JavaBNB {
     
     //Atributos
     private ArrayList<Inmueble> inmueblesDisponibles;
-
+    private Particular particular;
+    private Anfitrion anfitrion;
+    
     //Constructor
     public JavaBNB(ArrayList<Inmueble> inmueblesDisponibles) {
         this.inmueblesDisponibles = inmueblesDisponibles;
@@ -71,8 +74,24 @@ public class JavaBNB {
     //7º: Método para calcular precio en total
     public double calcularPrecioTotal(Inmueble inmueble, LocalDate fechaEntrada, LocalDate fechaSalida){
         long diasEstancia = ChronoUnit.DAYS.between(fechaEntrada, fechaSalida);
-    /*XXX no me da tiempo a más*/
+        double costoTotal = diasEstancia * inmueble.getPrecioNoche();
+        if (particular.isVip()){
+            costoTotal *= 0.9;
+    }
+        return costoTotal;
+    
     }
     
-    
+    //8º: Método para procesar el pago de la reserva
+    public void procesarPagoReserva(double costoTotal){
+        
+    double saldoRestanteParticular = particular.getSaldo(); 
+        if (saldoRestanteParticular < costoTotal){
+            System.out.println("No hay dinero suficiente para realizar la reserva");
+        }
+        else{
+            particular.disminuirSaldo(costoTotal);
+        }
+    }
 }
+    
